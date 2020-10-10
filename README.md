@@ -50,6 +50,6 @@ Please note that RKF45 is a method used to solve a system of first order differe
 
 Also note that we actually don't solve the equation for phi, instead we use an initial condition for phi and update that initial condition like so:
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\phi_{t&plus;1}&space;=&space;\phi_t&space;&plus;&space;\dot{\phi}&space;\cdot&space;dt" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\phi_{t&plus;1}&space;=&space;\phi_t&space;&plus;&space;\dot{\phi}&space;\cdot&space;dt" title="\phi_{t+1} = \phi_t + \dot{\phi} \cdot dt" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\phi_{t&plus;1}&space;=&space;\phi_t&space;&plus;&space;\dot{\phi_t}&space;\cdot&space;dt" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\phi_{t&plus;1}&space;=&space;\phi_t&space;&plus;&space;\dot{\phi_t}&space;\cdot&space;dt" title="\phi_{t+1} = \phi_t + \dot{\phi_t} \cdot dt" /></a>
 
 thus we really only need to solve for the phi velocity at each time step t and we can update the phi angle accordingly.
