@@ -7,8 +7,18 @@ RKF45 is the Runge-Kutta-Fehlberg adaptive method of solving a system of 1d diff
 
 Because of the nature of the adaptive method used in this code, the animation does not move in constant time steps (t) but in time steps dt that continuasly adapt to keep the error fixed below 1E-6. So, while the actually trajectory of the spherical pendulum is reproduced, the animation looks to slow down at parts where many very small time steps were taken, only to speed up again when the time steps grow larger.
 
-The actual differential equation which describes the motion was derived from the euler-lagrangian equation and detailed somewhat below:
+The actual differential equation which describes the motion was derived from the Euler-Lagrange equation and detailed somewhat below:
 
 The Lagrangian is defined as: 
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=L&space;=&space;T&space;-&space;U" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L&space;=&space;T&space;-&space;U" title="L = T - U" /></a>
+
+where T is the kinectic energy of the system and U is the potential energy of the system.
+
+Hamilton's Principle guarantees that all particle dynamics follow a path which minimizes the following integral (known as the action or action integral):
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=S&space;=&space;\int&space;_{t_0}^{t_f}&space;L(q,\dot{q},t)&space;dt" target="_blank"><img src="https://latex.codecogs.com/gif.latex?S&space;=&space;\int&space;_{t_0}^{t_f}&space;L(q,\dot{q},t)&space;dt" title="S = \int _{t_0}^{t_f} L(q,\dot{q},t) dt" /></a>
+
+where q = q(t) is a function of t. 
+
+The Euler-Lagrange Equation is the equation that solves for L(t) 
