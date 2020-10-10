@@ -45,3 +45,11 @@ and
 <a href="https://www.codecogs.com/eqnedit.php?latex=\dot{\phi}\sin^2(\theta)&space;=&space;k" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\dot{\phi}\sin^2(\theta)&space;=&space;k" title="\dot{\phi}\sin^2(\theta) = k" /></a>
 
 where k is a free constant that we can choose.
+
+Please note that RKF45 is a method used to solve a system of first order differential equations, and our equations are 2nd order and first order respectively. So we rewrite our first equation as a set of first order differential equations and solve that set instead.
+
+Also note that we actually don't solve the equation for phi, instead we use an initial condition for phi and update that initial condition like so:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\phi_{t&plus;1}&space;=&space;\phi_t&space;&plus;&space;\dot{\phi}&space;\cdot&space;dt" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\phi_{t&plus;1}&space;=&space;\phi_t&space;&plus;&space;\dot{\phi}&space;\cdot&space;dt" title="\phi_{t+1} = \phi_t + \dot{\phi} \cdot dt" /></a>
+
+thus we really only need to solve for the phi velocity at each time step t and we can update the phi angle accordingly.
