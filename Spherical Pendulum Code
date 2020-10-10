@@ -1,0 +1,118 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import animation
+from mpl_toolkits.mplot3d import Axes3D 
+
+
+""" Constants """
+
+R = 1. # radius of pendulum arm
+m = 1. # angular momentum about the z-axis divided by m*R^2
+g = -9.8 # acceleration due to gravity
+
+""" Spherical Pendulum Simulation """
+
+def G_tuv(a):
+    
+   return m**2 * (np.cos(a)/np.sin(a)**3) - g/R * (np.sin(a))
+
+def F_tuv(a):
+    
+    return a
+
+""" Initial Conditions """
+
+U_0 = np.pi/4. # initial theta position
+V_0 = 1.0 # initial theta velocity
+phi_0 = 0.0 # initial phi position
+
+""" -------------------- """
+
+U = []
+V = []
+phi = []
+
+h = 1
+n = 0
+while n < 2E3:
+
+    K1_U = h * F_tuv(V_0)
+    K1_V = h * G_tuv(U_0)
+    
+    K2_U = h * F_tuv(V_0+K1_V/4.)
+    K2_V = h * G_tuv(U_0+K2_U/4.)
+    
+    K3_U = h * F_tuv(V_0 + 3/32.*K1_V + 9/32.*K2_V)
+    K3_V = h * G_tuv(U_0 + 3/32.*K1_U + 9/32.*K2_U)
+    
+    K4_U = h * F_tuv(V_0 + 1932/2197.*K1_V - 7200/2197.*K2_V + 7296/2197.*K3_V)
+    K4_V = h * G_tuv(U_0 + 1932/2197.*K1_U - 7200/2197.*K2_U + 7296/2197.*K3_U)
+    
+    K5_U = h * F_tuv(V_0 + 439/216.*K1_V - 8.*K2_V + 3680/513.*K3_V - 845/4104.*K4_V)
+    K5_V = h * G_tuv(U_0 + 439/216.*K1_U - 8.*K2_U + 3680/513.*K3_U - 845/4104.*K4_U)
+    
+    K6_U = h * F_tuv(V_0 -8/27.*K1_V + 2.*K2_V - 3544/2565.*K3_V + 1859/4104.*K4_V - 11/40*K5_V)
+    K6_V = h * G_tuv(U_0 -8/27.*K1_U + 2.*K2_U - 3544/2565.*K3_U + 1859/4104.*K4_U - 11/40*K5_U)
+    
+    
+    """ RKF4 """
+    U_1 = U_0 + 25/216. * (K1_U) + 1408/2565. * (K3_U) + 2197/4104. * (K4_U) - 1/5. * (K5_U)
+    V_1 = V_0 + 25/216. * (K1_V) + 1408/2565. * (K3_V) + 2197/4104. * (K4_V) - 1/5. * (K5_V)
+    
+    """ RKF5 """
+    U1_b = U_0 + 16/135.*K1_U + 6656/12825.*K3_U + 28561/56430. * K4_U - 9/50.*K5_U + 2/55.*K6_U
+    V1_b = V_0 + 16/135.*K1_V + 6656/12825.*K3_V + 28561/56430. * K4_V - 9/50.*K5_V + 2/55.*K6_V
+
+    U_err = abs(U1_b - U_1)
+    V_err = abs(V1_b - V_1)
+    
+    if  U_err < 1E-6  and V_err < 1E-6:
+        U.append(U1_b)
+        V.append(V1_b)
+        
+        phi_vel = m/np.sin(U1_b)**2
+        phi_0 = phi_0 + phi_vel*h
+        phi.append(phi_0)
+        
+        U_0 = U1_b
+        V_0 = V1_b
+        h = 1
+        n = n + 1
+    elif U_err > 1E-6 or V_err > 1E-6:
+        h = h/2.
+    
+    print (n)
+
+x = R*np.sin(U)*np.cos(phi)
+y = R*np.sin(U)*np.sin(phi)
+z = R*np.cos(U)
+
+pos = np.stack((x,y,z),axis = 1)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.set_xlim(-R,R)
+ax.set_ylim(-R,R)
+ax.set_zlim(-R,R)
+
+
+line = ax.plot(x[0:1], y[0:1], z[0:1])
+#ax.scatter(x[0], y[0], z[0], color = 'red')
+
+# animation function
+def animate(i):
+    ax.clear()
+    ax.set_xlim(-R,R)
+    ax.set_ylim(-R,R)
+    ax.set_zlim(-R,R)
+    line = plt.plot(x[0:i], y[0:i], z[0:i])
+    print(i)
+    #scatter = plt.scatter(x[i], y[i], z[i], color = 'red')
+    return line
+
+    
+ani = animation.FuncAnimation(fig, animate, n, interval=50, blit=False)
+
+Writer = animation.writers['ffmpeg']
+writer = Writer(fps=60, metadata=dict(artist='Me'), bitrate=1800)
+ani.save('spherical pendulum.mp4', writer=writer)
