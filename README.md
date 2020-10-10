@@ -42,6 +42,6 @@ Skipping steps for brevity we find that the equations of motion are:
 
 and 
 
-\dot{\phi}\sin^2(\theta) = k
+<a href="https://www.codecogs.com/eqnedit.php?latex=\dot{\phi}\sin^2(\theta)&space;=&space;k" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\dot{\phi}\sin^2(\theta)&space;=&space;k" title="\dot{\phi}\sin^2(\theta) = k" /></a>
 
 where k is a free constant that we can choose.
