@@ -35,3 +35,13 @@ For our problem in question (the spherical pendulum) we need to find the kinecti
 So we have that:
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=L&space;=&space;\frac{1}{2}&space;m&space;r&space;(\dot{\theta})^2&space;&plus;&space;\frac{1}{2}&space;m&space;r&space;\sin(\theta)(\dot{\phi})^2&space;-&space;mgr\cos(\theta)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L&space;=&space;\frac{1}{2}&space;m&space;r&space;(\dot{\theta})^2&space;&plus;&space;\frac{1}{2}&space;m&space;r&space;\sin(\theta)(\dot{\phi})^2&space;-&space;mgr\cos(\theta)" title="L = \frac{1}{2} m r (\dot{\theta})^2 + \frac{1}{2} m r \sin(\theta)(\dot{\phi})^2 - mgr\cos(\theta)" /></a>
+
+Skipping steps for brevity we find that the equations of motion are:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\ddot{\theta}&space;=&space;\frac{k^2&space;cos(\theta)}{\sin^3(\theta)}&space;-&space;\frac{g&space;\sin(\theta)}{r}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\ddot{\theta}&space;=&space;\frac{k^2&space;cos(\theta)}{\sin^3(\theta)}&space;-&space;\frac{g&space;\sin(\theta)}{r}" title="\ddot{\theta} = \frac{k^2 cos(\theta)}{\sin^3(\theta)} - \frac{g \sin(\theta)}{r}" /></a>
+
+and 
+
+\dot{\phi}\sin^2(\theta) = k
+
+where k is a free constant that we can choose.
