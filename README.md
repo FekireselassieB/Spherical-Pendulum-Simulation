@@ -15,10 +15,12 @@ The Lagrangian is defined as:
 
 where T is the kinectic energy of the system and U is the potential energy of the system.
 
-Hamilton's Principle guarantees that all particle dynamics follow a path which minimizes the following integral (known as the action or action integral):
+Hamilton's Principle guarantees that all particle dynamics follow a path which allows the following integral (known as the action or action integral) to be stationary:
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=S&space;=&space;\int&space;_{t_0}^{t_f}&space;L(q,\dot{q},t)&space;dt" target="_blank"><img src="https://latex.codecogs.com/gif.latex?S&space;=&space;\int&space;_{t_0}^{t_f}&space;L(q,\dot{q},t)&space;dt" title="S = \int _{t_0}^{t_f} L(q,\dot{q},t) dt" /></a>
 
-where q = q(t) is a function of t. 
+where q = q(t) is the generalized coordinate of the system.
 
-The Euler-Lagrange Equation is the equation that solves for L(t) 
+The Euler-Lagrange Equation is the equation that solves for L(t) that allows for the above condition to be met. The Euler-Lagrange equation is:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\frac{\partial{L}}{\partial{q}}&space;-&space;\frac{\partial}{\partial&space;t}\frac{\partial{L}}{\partial{\dot{q}}}&space;=&space;0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{\partial{L}}{\partial{q}}&space;-&space;\frac{\partial}{\partial&space;t}\frac{\partial{L}}{\partial{\dot{q}}}&space;=&space;0" title="\frac{\partial{L}}{\partial{q}} - \frac{\partial}{\partial t}\frac{\partial{L}}{\partial{\dot{q}}} = 0" /></a>
