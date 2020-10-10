@@ -24,3 +24,14 @@ where q = q(t) is the generalized coordinate of the system.
 The Euler-Lagrange Equation is the equation that solves for L(t) that allows for the above condition to be met. The Euler-Lagrange equation is:
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\frac{\partial{L}}{\partial{q}}&space;-&space;\frac{\partial}{\partial&space;t}\frac{\partial{L}}{\partial{\dot{q}}}&space;=&space;0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{\partial{L}}{\partial{q}}&space;-&space;\frac{\partial}{\partial&space;t}\frac{\partial{L}}{\partial{\dot{q}}}&space;=&space;0" title="\frac{\partial{L}}{\partial{q}} - \frac{\partial}{\partial t}\frac{\partial{L}}{\partial{\dot{q}}} = 0" /></a>
+
+
+For our problem in question (the spherical pendulum) we need to find the kinectic energy T and the potential energy U. We find that these energies are the following:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=T&space;=&space;\frac{1}{2}&space;m&space;r&space;(\dot{\theta})^2&space;&plus;&space;\frac{1}{2}&space;m&space;r&space;\sin(\theta)(\dot{\phi})^2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?T&space;=&space;\frac{1}{2}&space;m&space;r&space;(\dot{\theta})^2&space;&plus;&space;\frac{1}{2}&space;m&space;r&space;\sin(\theta)(\dot{\phi})^2" title="T = \frac{1}{2} m r (\dot{\theta})^2 + \frac{1}{2} m r \sin(\theta)(\dot{\phi})^2" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=U&space;=&space;mgr\cos(\theta)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?U&space;=&space;mgr\cos(\theta)" title="U = mgr\cos(\theta)" /></a>
+
+So we have that:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=L&space;=&space;\frac{1}{2}&space;m&space;r&space;(\dot{\theta})^2&space;&plus;&space;\frac{1}{2}&space;m&space;r&space;\sin(\theta)(\dot{\phi})^2&space;-&space;mgr\cos(\theta)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L&space;=&space;\frac{1}{2}&space;m&space;r&space;(\dot{\theta})^2&space;&plus;&space;\frac{1}{2}&space;m&space;r&space;\sin(\theta)(\dot{\phi})^2&space;-&space;mgr\cos(\theta)" title="L = \frac{1}{2} m r (\dot{\theta})^2 + \frac{1}{2} m r \sin(\theta)(\dot{\phi})^2 - mgr\cos(\theta)" /></a>
