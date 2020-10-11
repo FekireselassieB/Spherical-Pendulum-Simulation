@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
-from mpl_toolkits.mplot3d import Axes3D 
+from mpl_toolkits.mplot3d import Axes3D
+from scipy import interpolate
 
 
 """ Constants """
@@ -31,10 +32,12 @@ phi_0 = 0.0 # initial phi position
 U = []
 V = []
 phi = []
+time = []
 
 h = 1
 n = 0
-while n < 2E3:
+t = 0
+while n < 1E4:
 
     K1_U = h * F_tuv(V_0)
     K1_V = h * G_tuv(U_0)
@@ -74,6 +77,9 @@ while n < 2E3:
         phi_0 = phi_0 + phi_vel*h
         phi.append(phi_0)
         
+        t = t + h
+        time.append(t)
+        
         U_0 = U1_b
         V_0 = V1_b
         h = 1
@@ -83,11 +89,16 @@ while n < 2E3:
     
     print (n)
 
-x = R*np.sin(U)*np.cos(phi)
-y = R*np.sin(U)*np.sin(phi)
-z = R*np.cos(U)
+time_even = np.linspace(time[0],time[-1],10000)
+f_U = interpolate.interp1d(time, U)
+f_phi = interpolate.interp1d(time, phi)
+U_new = f_U(time_even)
+phi_new = f_phi(time_even)
 
-pos = np.stack((x,y,z),axis = 1)
+x = R*np.sin(U_new)*np.cos(phi_new)
+y = R*np.sin(U_new)*np.sin(phi_new)
+z = R*np.cos(U_new)
+
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -106,7 +117,6 @@ def animate(i):
     ax.set_ylim(-R,R)
     ax.set_zlim(-R,R)
     line = plt.plot(x[0:i], y[0:i], z[0:i])
-    print(i)
     #scatter = plt.scatter(x[i], y[i], z[i], color = 'red')
     return line
 
